@@ -47,8 +47,8 @@ class Utilities:
         embed.set_author(name="Results on Google Books", url = "https://www.google.com/search?tbm=bks&"+urllib.parse.urlencode({"q":query}))
         embed.set_footer(text=f"Results on Google Books by {query} | {response['totalItems']} total results", icon_url="https://cohlab.com/wp-content/uploads/Google_-G-_Logo.svg-1.png")
         if "description" in book["volumeInfo"]:
-            if len(book["volumeInfo"]["description"]) > 300:
-                embed.add_field(inline = False, name="Description", value=html2text(book["volumeInfo"]["description"])[:300]+"...")
+            if len(book["volumeInfo"]["description"]) > 1000:
+                embed.add_field(inline = False, name="Description", value=html2text(book["volumeInfo"]["description"])[:1000]+"...")
             else:
                 embed.add_field(inline = False, name="Description", value=html2text(book["volumeInfo"]["description"]))
         elif "searchInfo" in book["volumeInfo"]:
@@ -69,9 +69,12 @@ class Utilities:
             rating = "For all ages"
         else:
             rating = "Not suitable for -18"
-        #if
+        if "industryIdentifiers" in book["volumeInfo"]:
+            id = f"Industry Identificator({book["volumeInfo"]["industryIdentifiers"][len(book["volumeInfo"]["industryIdentifiers"])]["type"]}): {book["volumeInfo"]["industryIdentifiers"][len(book["volumeInfo"]["industryIdentifiers"])]["identifier"]}"
+        else:
+            id = f"Google Books identificator: {book["id"]}"
         if "pageCount" in book["volumeInfo"]:
-            embed.add_field(inline = False, name="Book information", value=f"{book['volumeInfo']['pageCount']} pages\nFor all ages\nISBN: {book['volumeInfo']['industryIdentifiers'][1]['identifier']}")
+            embed.add_field(inline = False, name="Book information", value=f"{book['volumeInfo']['pageCount']} pages\nFor all ages\n{id}")
         else:
             embed.add_field(inline = False, name="Book information", value=f"Page count is not listed\nFor all ages\nISBN: {book['volumeInfo']['industryIdentifiers'][1]['identifier']}")
         if "publishedDate" in book["volumeInfo"]:
