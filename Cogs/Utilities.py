@@ -51,8 +51,10 @@ class Utilities:
                 embed.add_field(inline = False, name="Description", value=html2text(book["volumeInfo"]["description"])[:300]+"...")
             else:
                 embed.add_field(inline = False, name="Description", value=html2text(book["volumeInfo"]["description"]))
-        else:
+        elif "searchInfo" in book["volumeInfo"]:
             embed.add_field(inline = False, name="Description", value=html2text(book["searchInfo"]["textSnippet"]))
+        else:
+            embed.add_field(inline = False, name="Description", value="No description provided!")
         if "categories" in book["volumeInfo"]:
             if len(book["volumeInfo"]["categories"]) > 1:
                 genres = ""
