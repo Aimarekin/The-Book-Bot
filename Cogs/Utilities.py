@@ -70,9 +70,9 @@ class Utilities:
         else:
             rating = "Not suitable for -18"
         if "industryIdentifiers" in book["volumeInfo"]:
-            id = f"Industry Identificator({book["volumeInfo"]["industryIdentifiers"][len(book["volumeInfo"]["industryIdentifiers"])]["type"]}): {book["volumeInfo"]["industryIdentifiers"][len(book["volumeInfo"]["industryIdentifiers"])]["identifier"]}"
+            id = f'Industry Identificator({book["volumeInfo"]["industryIdentifiers"][len(book["volumeInfo"]["industryIdentifiers"])]["type"]}): {book["volumeInfo"]["industryIdentifiers"][len(book["volumeInfo"]["industryIdentifiers"])]["identifier"]}'
         else:
-            id = f"Google Books identificator: {book["id"]}"
+            id = f'Google Books identificator: {book["id"]}'
         if "pageCount" in book["volumeInfo"]:
             embed.add_field(inline = False, name="Book information", value=f"{book['volumeInfo']['pageCount']} pages\nFor all ages\n{id}")
         else:
