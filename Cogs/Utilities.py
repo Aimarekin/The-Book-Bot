@@ -18,8 +18,7 @@ class Utilities:
         "q": query,
         "langRestrict": "en"
         })
-        response = response_ori.json()
-        print(response)
+        response = response_ori.json(
         if response["totalItems"] == 0:
             return None
         book = response["items"][0]
@@ -77,6 +76,10 @@ class Utilities:
             embed.add_field(inline = False, name="Book information", value=f"{book['volumeInfo']['pageCount']} pages\nFor all ages\n{id}")
         else:
             embed.add_field(inline = False, name="Book information", value=f"Page count is not listed\nFor all ages\nISBN: {book['volumeInfo']['industryIdentifiers'][1]['identifier']}")
+        if "publisher" in book["volumeInfo"]:
+            publisher = book['volumeInfo']['publisher']
+        else:
+            publisher = "No publisher"
         if "publishedDate" in book["volumeInfo"]:
             date = book["volumeInfo"]["publishedDate"].split("-")
             if len(date) == 3:
@@ -88,9 +91,9 @@ class Utilities:
             else:
                 date_text = f"{date[0]}"
                 date_num = ""
-            embed.add_field(inline = False, name="Publish information", value=f"Published by {book['volumeInfo']['publisher']}\n{date_text}{date_num}")
+            embed.add_field(inline = False, name="Publish information", value=f"Published by {publisher}\n{date_text}{date_num}")
         else:
-            embed.add_field(inline = False, name="Publish information", value=f"Published by {book['volumeInfo']['publisher']}\nPublish date is not listed")
+            embed.add_field(inline = False, name="Publish information", value=f"Published by {publisher}\nPublish date is not listed")
         string = ""
         if book["saleInfo"]["saleability"] == "FOR_SALE":
             embed.add_field(inline = False, name="Sales information", value=f"Ebook on sale on Google Books\n{book['saleInfo']['listPrice']['amount']}{book['saleInfo']['listPrice']['currencyCode']}\n[Get it now!]({book['saleInfo']['buyLink']})")
