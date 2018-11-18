@@ -18,7 +18,7 @@ class Utilities:
         "q": query,
         "langRestrict": "en"
         })
-        response = response_ori.json(
+        response = response_ori.json()
         if response["totalItems"] == 0:
             return None
         book = response["items"][0]
