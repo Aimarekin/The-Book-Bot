@@ -19,6 +19,7 @@ class Utilities:
         "langRestrict": "en"
         })
         response = response_ori.json()
+        print(response)
         if response["totalItems"] == 0:
             return None
         book = response["items"][0]
