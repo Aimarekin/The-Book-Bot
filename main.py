@@ -3,6 +3,12 @@ from discord.ext import commands
 import asyncio
 import json
 import traceback
+#Following only in Heroku
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['DISCORD_KEY'])
+print(s3)
+#Heroku end
+#If not using heroku put your token in botconfig
 
 botconfig = json.loads(open("./botconfig.json", "r").read())
 commands_info = json.loads(open("./commands.json", "r").read())
@@ -88,5 +94,8 @@ async def on_command_error(ctx: commands.Context, error):
         await log_channel.send(f"<@407093314316140554>\n\n{error}\n¨{traceback.format_exc()}")
         raise error
 
-client.run(botconfig["token"])
+
+client.run(s3["DISCORD_KEY"])
+#If not using heroku use:
+#client.run(botconfig["token"])
 print("The Book Bot is shutting down...")

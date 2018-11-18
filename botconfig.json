@@ -1,4 +1,4 @@
 {
-  "token": "YOUR_TOKEN",
-  "bot_admins": ["ADMIN", "IDs"]
+  "token": "YOUR_TOKEN_IF_NOT_USING_HEROKU",
+  "bot_admins": [407093314316140554, 178103648608452608]
 }
