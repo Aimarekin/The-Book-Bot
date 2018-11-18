@@ -7,7 +7,7 @@ import traceback
 #Following only in Heroku
 import os
 from boto.s3.connection import S3Connection
-s3 = S3Connection(os.environ['DISCORD_KEY'])
+s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 print(s3)
 #Heroku end
 #If not using heroku put your token in botconfig
