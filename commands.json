@@ -1,0 +1,9 @@
+{
+  "help_args": " <command/cog>",
+  "book_args": " [query]",
+  "suggest_everyone_args": " [book]",
+  "chat_args": " [channel] [message]",
+  "reloadcog_args": " [cog]",
+  "loadcog_args": " [cog]",
+  "unloadcog_args": " [cog]"
+}
