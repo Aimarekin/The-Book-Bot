@@ -98,7 +98,7 @@ class Utilities:
         if book["saleInfo"]["saleability"] == "FOR_SALE":
             embed.add_field(inline = False, name="Sales information", value=f"Ebook on sale on Google Books\n{book['saleInfo']['listPrice']['amount']}{book['saleInfo']['listPrice']['currencyCode']}\n[Get it now!]({book['saleInfo']['buyLink']})")
         else:
-            embed.add_field(inline = False, name="Sales information", value=f"Not available on Google Books.\nWhat about [seaching it on Amazon](https://www.amazon.com/s/url=search-alias%3Dstripbooks-intl-ship&field-keywords={book['volumeInfo']['industryIdentifiers'][1]['identifier']})?")
+            embed.add_field(inline = False, name="Sales information", value=f"Not available on Google Books.\nWhat about [seaching it on Amazon](https://www.amazon.com/s/url=search-alias%3Dstripbooks-intl-ship&field-keywords={book['volumeInfo']['industryIdentifiers'][len(book["volumeInfo"]["industryIdentifiers"])-1]['identifier']})?")
         return embed
 
     @commands.command()
