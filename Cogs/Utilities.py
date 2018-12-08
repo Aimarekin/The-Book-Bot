@@ -6,6 +6,7 @@ import math
 import calendar
 from html2text import html2text
 import urllib
+from goodreads import client
 from check import on_ready, is_bot_admin, confirm, wait_for_reply
 ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(math.floor(n/10)%10!=1)*(n%10<4)*n%10::4])
 
@@ -98,7 +99,7 @@ class Utilities:
         if book["saleInfo"]["saleability"] == "FOR_SALE":
             embed.add_field(inline = False, name="Sales information", value=f"Ebook on sale on Google Books\n{book['saleInfo']['listPrice']['amount']}{book['saleInfo']['listPrice']['currencyCode']}\n[Get it now!]({book['saleInfo']['buyLink']})")
         else:
-            embed.add_field(inline = False, name="Sales information", value=f"Not available on Google Books.\nWhat about [seaching it on Amazon](https://www.amazon.com/s/url=search-alias%3Dstripbooks-intl-ship&field-keywords={book['volumeInfo']['industryIdentifiers'][len(book["volumeInfo"]["industryIdentifiers"])-1]['identifier']})?")
+            embed.add_field(inline = False, name="Sales information", value=f"Not available on Google Books.\nWhat about [seaching it on Amazon](https://www.amazon.com/s/url=search-alias%3Dstripbooks-intl-ship&field-keywords={book['volumeInfo']['industryIdentifiers'][len(book['volumeInfo']['industryIdentifiers'])-1]['identifier']})?")
         return embed
 
     @commands.command()
